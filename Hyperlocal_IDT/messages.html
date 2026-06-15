@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chats - Hyperlocal</title>
+    <style>
+        :root {
+            --background: #f8fafc;
+            --primary: #3c8dbc;
+            --secondary: #a7d3f0;
+            --text: #1e1e1e;
+            --muted: #717171;
+            --border: rgba(60, 141, 188, 0.2);
+            --radius: 28px;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .page {
+            width: min(720px, 100%);
+            margin: 0 auto;
+            padding: 24px 18px 48px;
+        }
+
+        .chat-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            font-size: 22px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            background: #fff;
+            border: 1px solid var(--border);
+        }
+
+        .btn-new-chat {
+            margin-left: auto;
+            padding: 12px 18px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .filter-btn {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .filter-btn.active {
+            background: var(--secondary);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .filter-badge {
+            opacity: 0.85;
+            font-weight: 700;
+        }
+
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .inbox-row {
+            display: flex;
+            align-items: stretch;
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .inbox-row-main {
+            flex: 1;
+            padding: 16px 18px;
+            min-width: 0;
+        }
+
+        .inbox-peer {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .inbox-preview {
+            color: var(--muted);
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .inbox-meta {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        .inbox-unread-badge {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .chat-remove-btn {
+            width: 48px;
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .chat-remove-btn:hover {
+            background: rgba(220, 53, 69, 0.12);
+            color: #c82333;
+        }
+
+        .footer-nav {
+            display: none;
+        }
+
+        .chat-modal[hidden] {
+            display: none !important;
+        }
+
+        .chat-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .chat-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .chat-modal-panel {
+            position: relative;
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 24px;
+            width: min(400px, 100%);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-modal-panel h3 {
+            margin: 0 0 12px;
+        }
+
+        .chat-modal-panel p {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 0 0 16px;
+        }
+
+        .chat-modal-panel input {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+        }
+
+        .chat-modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+
+        .chat-modal-actions button {
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        #new-chat-close {
+            background: #eee;
+            color: var(--text);
+        }
+
+        #new-chat-form button[type="submit"] {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        @media (max-width: 780px) {
+            .footer-nav {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 10px;
+                margin-top: 28px;
+            }
+
+            .footer-nav a {
+                padding: 12px 0;
+                text-align: center;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body data-chat-page="inbox-all">
+    <div class="page">
+        <div class="chat-top">
+            <a href="homeAllPage.html" class="back-btn">←</a>
+            <button type="button" class="btn-new-chat" id="btn-new-chat">+ New chat</button>
+        </div>
+
+        <div class="filter-row">
+            <a href="messages.html" class="filter-btn active">All <span class="filter-badge" id="inbox-badge-all">0</span></a>
+            <a href="messagesUnread.html" class="filter-btn">Unread <span class="filter-badge" id="inbox-badge-unread">0</span></a>
+        </div>
+
+        <div class="messages-container" id="chat-inbox-list">
+            <p style="color:#717171;">Loading chats…</p>
+        </div>
+
+        <div class="footer-nav">
+            <a href="homeAllPage.html">Home</a>
+            <a href="communityHelperPage.html">Community</a>
+            <a href="createPostPage.html">Create</a>
+            <a href="messages.html">Chat</a>
+            <a href="profilePage.html">Profile</a>
+        </div>
+    </div>
+
+    <div id="new-chat-modal" class="chat-modal" hidden>
+        <div class="chat-modal-backdrop" id="new-chat-backdrop"></div>
+        <div class="chat-modal-panel">
+            <h3>Start a chat</h3>
+            <p>Use the email they used to sign up (stored in Firestore).</p>
+            <form id="new-chat-form">
+                <input type="email" id="new-chat-email" required placeholder="neighbor@email.com" autocomplete="email">
+                <input type="text" id="new-chat-subject" placeholder="Topic (optional), e.g. Re: leaky tap">
+                <div class="chat-modal-actions">
+                    <button type="button" id="new-chat-close">Cancel</button>
+                    <button type="submit">Open chat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="hyperlocal-chat.js?v=20260410d"></script>
+</body>
+
+</html>

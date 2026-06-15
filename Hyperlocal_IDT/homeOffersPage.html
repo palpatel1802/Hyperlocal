@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Offers Page</title>
+    <style>
+        :root {
+            --background: #f8fafc;
+            --primary: #3c8dbc;
+            --secondary: #a7d3f0;
+            --container-bg: #ffffff;
+            --text: #1e1e1e;
+            --muted: #717171;
+            --border: rgba(60, 141, 188, 0.2);
+            --radius: 28px;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page {
+            width: min(1200px, 100%);
+            margin: 0 auto;
+            padding: 32px 24px 48px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .branding {
+            max-width: 600px;
+        }
+
+        .branding h1 {
+            margin: 0;
+            font-size: clamp(32px, 4vw, 44px);
+            color: var(--primary);
+            line-height: 1.05;
+        }
+
+        .branding p {
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .location {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #ffffff;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 14px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin: 28px 0;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 22px;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 1px solid var(--secondary);
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a.active {
+            background: var(--secondary);
+            color: #ffffff;
+        }
+
+        .main-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+
+        .main-nav a {
+            padding: 12px 18px;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            padding: 28px;
+            background: #ffffff;
+            border-radius: var(--radius);
+            border: 1px solid rgba(60, 141, 188, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            min-height: 380px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .location-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status-pill {
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--secondary);
+            color: #000000;
+            font-weight: 700;
+            font-size: 13px;
+            background: #ffffff;
+            white-space: nowrap;
+        }
+
+        .card-title {
+            margin: 12px 0 0;
+            font-size: 20px;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .card-author {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .card-description {
+            color: #333333;
+            line-height: 1.75;
+            margin: 0;
+            flex: 1;
+            min-height: 90px;
+            font-size: 14px;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            background: transparent;
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .footer-nav {
+            display: none;
+        }
+
+        @media (max-width: 1060px) {
+            .cards {
+                grid-template-columns: repeat(2, minmax(240px, 1fr));
+            }
+        }
+
+        @media (max-width: 780px) {
+            .page {
+                padding: 24px 18px 32px;
+            }
+
+            .header {
+                align-items: stretch;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .main-nav {
+                justify-content: space-between;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-nav {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 12px;
+                margin-top: 24px;
+            }
+
+            .footer-nav a {
+                padding: 14px 0;
+                text-align: center;
+                font-size: 13px;
+            }
+
+            .card {
+                min-height: unset;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="home-offers">
+    <div class="page">
+        <div class="topbar">
+            <div class="branding">
+                <h1>HYPERLOCAL</h1>
+                <p>The people next door, helping out.</p>
+            </div>
+            <div class="location">Ahmedabad</div>
+        </div>
+
+        <div class="nav-links">
+            <a href="homeAllPage.html">All</a>
+            <a href="homeHelpPage.html">Help needed</a>
+            <a class="active" href="homeOffersPage.html">Offers</a>
+        </div>
+
+        <div class="main-nav">
+            <a href="homeAllPage.html">Home</a>
+            <a href="communityHelperPage.html">Community</a>
+            <a href="createPostPage.html">Create</a>
+            <a href="messages.html">Chat</a>
+            <a href="profilePage.html">Profile</a>
+        </div>
+
+        <div class="cards" id="feed-cards">
+            <p style="grid-column:1/-1;color:#717171;">Loading…</p>
+        </div>
+
+        <div class="footer-nav">
+            <a href="homeAllPage.html">Home</a>
+            <a href="communityHelperPage.html">Community</a>
+            <a href="createPostPage.html">Create</a>
+            <a href="messages.html">Chat</a>
+            <a href="profilePage.html">Profile</a>
+        </div>
+    </div>
+    <script type="module" src="hyperlocal-ui.js"></script>
+</body>
+
+</html>

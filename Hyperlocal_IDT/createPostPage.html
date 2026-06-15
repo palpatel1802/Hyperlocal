@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post - Hyperlocal</title>
+    <style>
+        :root {
+            --background: #f8fafc;
+            --primary: #3c8dbc;
+            --secondary: #a7d3f0;
+            --container-bg: #ffffff;
+            --text: #1e1e1e;
+            --muted: #717171;
+            --border: rgba(60, 141, 188, 0.2);
+            --radius: 28px;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .page {
+            width: min(1200px, 100%);
+            margin: 0 auto;
+            padding: 32px 24px 48px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--text);
+            font-size: 24px;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .intro-text {
+            margin-bottom: 32px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .intro-text strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .post-options {
+            display: grid;
+            gap: 20px;
+        }
+
+        .post-option {
+            background: #ffffff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            text-decoration: none;
+        }
+
+        .post-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            background: #f9f9f9;
+        }
+
+        .option-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+            color: var(--primary);
+        }
+
+        .option-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .option-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 8px 0;
+        }
+
+        .option-description {
+            font-size: 14px;
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .option-arrow {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .footer-nav {
+            display: none;
+        }
+
+        @media (max-width: 1060px) {
+            .post-options {
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 780px) {
+            .page {
+                padding: 24px 18px 32px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: 24px;
+            }
+
+            .post-option {
+                padding: 20px;
+            }
+
+            .option-title {
+                font-size: 16px;
+            }
+
+            .option-description {
+                font-size: 13px;
+            }
+
+            .intro-text {
+                font-size: 14px;
+            }
+
+            .footer-nav {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 12px;
+                margin-top: 24px;
+            }
+
+            .footer-nav a {
+                padding: 14px 0;
+                text-align: center;
+                font-size: 13px;
+                color: var(--muted);
+                transition: color 0.2s ease;
+            }
+
+            .footer-nav a:active {
+                color: var(--primary);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="header">
+            <a href="homeAllPage.html" class="back-btn">←</a>
+            <h1 class="header-title">Create Post</h1>
+        </div>
+
+        <div class="intro-text">
+            <strong>What would you like to share?</strong>
+            <br>
+            Choose the type of post you want to create
+        </div>
+
+        <div class="post-options">
+            <a href="requestHelpPage.html" class="post-option">
+                <div class="option-icon">?</div>
+                <div class="option-content">
+                    <h3 class="option-title">Request Help</h3>
+                    <p class="option-description">Need assistance with something?</p>
+                </div>
+                <div class="option-arrow">→</div>
+            </a>
+
+            <a href="offerSkillPage.html" class="post-option">
+                <div class="option-icon">★</div>
+                <div class="option-content">
+                    <h3 class="option-title">Offer Skill</h3>
+                    <p class="option-description">Share your talents with neighbors</p>
+                </div>
+                <div class="option-arrow">→</div>
+            </a>
+
+            <a href="shareEventPage.html" class="post-option">
+                <div class="option-icon">📅</div>
+                <div class="option-content">
+                    <h3 class="option-title">Share Event</h3>
+                    <p class="option-description">Organize or announce an event</p>
+                </div>
+                <div class="option-arrow">→</div>
+            </a>
+
+            <a href="lost&FoundPage.html" class="post-option">
+                <div class="option-icon">🔍</div>
+                <div class="option-content">
+                    <h3 class="option-title">Lost and Found</h3>
+                    <p class="option-description">Report lost or found items</p>
+                </div>
+                <div class="option-arrow">→</div>
+            </a>
+
+            <a href="shareLocalShopPage.html" class="post-option">
+                <div class="option-icon">🏪</div>
+                <div class="option-content">
+                    <h3 class="option-title">Share Local Shops</h3>
+                    <p class="option-description">Share local shops to connect neighbors</p>
+                </div>
+                <div class="option-arrow">→</div>
+            </a>
+        </div>
+
+        <div class="footer-nav">
+            <a href="homeAllPage.html">Home</a>
+            <a href="communityHelperPage.html">Community</a>
+            <a href="createPostPage.html">Create</a>
+            <a href="messages.html">Chat</a>
+            <a href="profilePage.html">Profile</a>
+        </div>
+    </div>
+</body>
+
+</html>

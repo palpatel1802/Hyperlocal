@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Shop Popup</title>
+    <style>
+        :root {
+            --background: #f8fafc;
+            --primary: #3c8dbc;
+            --secondary: #a7d3f0;
+            --container-bg: #ffffff;
+            --text: #1e1e1e;
+            --muted: #717171;
+            --border: rgba(60, 141, 188, 0.1);
+            --radius: 20px;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .local-shop-pop-up-page {
+            background: var(--container-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 480px;
+            overflow: hidden;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .shop-header {
+            position: relative;
+            padding: 20px 24px 16px;
+            background: linear-gradient(135deg, var(--secondary), #e3f1fa);
+        }
+
+        .shop-header-title {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .shop-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .shop-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .shop-description {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin: 0;
+            padding: 12px;
+            background: var(--background);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .shop-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .detail-label {
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 60px;
+        }
+
+        .detail-value {
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .detail-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .detail-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .detail-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-label {
+            font-weight: 700;
+            font-size: 11px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 12px;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .shop-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .book-btn {
+            flex: 1;
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .book-btn:hover {
+            background: #2a6a94;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(60, 141, 188, 0.25);
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+
+            .local-shop-pop-up-page {
+                max-width: 100%;
+            }
+
+            .shop-header {
+                padding: 16px 18px 14px;
+            }
+
+            .shop-content {
+                padding: 18px;
+                gap: 12px;
+            }
+
+            .shop-title {
+                font-size: 16px;
+            }
+
+            .shop-description {
+                font-size: 11px;
+                padding: 10px;
+            }
+
+            .detail-item {
+                font-size: 12px;
+            }
+
+            .book-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="local-shop-pop-up-page">
+        <div class="shop-header">
+            <p class="shop-header-title">Local shop</p>
+            <a href="communityLocalShopPage.html" class="close-btn">✕</a>
+        </div>
+
+        <div class="shop-content">
+            <h2 class="shop-title">Mayra's Coffee Corner</h2>
+
+            <p class="shop-description">Cozy neighborhood coffee shop serving artisan coffee, fresh pastries, and light meals. Perfect spot for work or catching up with friends.</p>
+
+            <div class="shop-details">
+                <div class="detail-row">
+                    <div class="detail-icon">
+                    </div>
+                    <div class="detail-info">
+                        <span class="info-label">Address</span>
+                        <span class="info-value">123 Main Street, Gujarat</span>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-icon">
+                    </div>
+                    <div class="detail-info">
+                        <span class="info-label">Hours</span>
+                        <span class="info-value">Mon-Fri: 7AM-6PM<br>Sat-Sun: 8AM-5PM</span>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-icon">
+                    </div>
+                    <div class="detail-info">
+                        <span class="info-label">Phone</span>
+                        <span class="info-value">+911234567890</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-actions">
+                <button class="book-btn">Book Visit</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

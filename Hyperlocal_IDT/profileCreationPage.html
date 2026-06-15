@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Creation - Hyperlocal</title>
+    <style>
+        :root {
+            --background: #f8fafc;
+            --primary: #3c8dbc;
+            --secondary: #a7d3f0;
+            --text: #1e1e1e;
+            --muted: #7d7d7d;
+            --border: #1e1e1e;
+            --container-bg: #f4f8ff;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 32px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input:focus {
+            border-color: var(--primary);
+        }
+
+        .textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            resize: vertical;
+            min-height: 80px;
+            transition: border-color 0.2s ease;
+        }
+
+        .textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .button {
+            width: 100%;
+            background: var(--primary);
+            border: none;
+            border-radius: 50px;
+            padding: 16px;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-top: 32px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .button:hover {
+            background: #2e6b9a;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">HYPERLOCAL</div>
+        <h1 class="title">Profile Creation</h1>
+        
+        <form id="profile-form">
+            <div class="form-group">
+                <label class="label" for="fullname">Full Name</label>
+                <input class="input" type="text" id="fullname" placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+                <label class="label" for="contact">Contact No.</label>
+                <input class="input" type="tel" id="contact" placeholder="Enter your contact number">
+            </div>
+            
+            <div class="form-group">
+                <label class="label" for="bio">Bio</label>
+                <textarea class="textarea" id="bio" placeholder="Tell your neighbors about yourself...."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="label" for="address">Address</label>
+                <input class="input" type="text" id="address" placeholder="Enter your address">
+            </div>
+            
+            <div class="form-group">
+                <label class="label" for="skills">Skills</label>
+                <input class="input" type="text" id="skills" placeholder="Enter your skills">
+            </div>
+            
+            <button type="submit" class="button">SUBMIT</button>
+        </form>
+    </div>
+    <script type="module" src="hyperlocal-backend.js"></script>
+</body>
+
+</html>

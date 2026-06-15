@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Help - Hyperlocal</title>
+    <style>
+        :root {
+            --background: #f8fafc;
+            --primary: #3c8dbc;
+            --secondary: #a7d3f0;
+            --text: #1e1e1e;
+            --muted: #7d7d7d;
+            --border: #1e1e1e;
+            --container-bg: #f4f8ff;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 24px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 32px;
+            padding-top: 16px;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text);
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input:focus {
+            border-color: var(--primary);
+        }
+
+        .textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            resize: vertical;
+            min-height: 80px;
+            transition: border-color 0.2s ease;
+        }
+
+        .textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .select:focus {
+            border-color: var(--primary);
+        }
+
+        .button {
+            width: 100%;
+            background: var(--primary);
+            border: none;
+            border-radius: 50px;
+            padding: 16px;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-top: 32px;
+        }
+
+        .button:hover {
+            background: #2e6b9a;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+
+            .header {
+                margin-bottom: 24px;
+            }
+
+            .container {
+                padding: 24px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .header-title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="createPostPage.html" class="back-btn">←</a>
+        <h1 class="header-title">Request Help</h1>
+    </div>
+
+    <div class="container">
+        <div class="logo">HYPERLOCAL</div>
+        
+        <form id="request-help-form">
+            <div class="form-group">
+                <label class="label" for="title">Title</label>
+                <input class="input" type="text" id="title" placeholder="Give a title for your request">
+            </div>
+            
+            <div class="form-group">
+                <label class="label" for="description">Description</label>
+                <textarea class="textarea" id="description" placeholder="Describe what help you want..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="label" for="category">Category</label>
+                <select class="select" id="category">
+                    <option value="">Select a category</option>
+                    <option value="home-repair">Home Repair</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="cleaning">Cleaning</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="button">POST</button>
+        </form>
+    </div>
+    <script type="module" src="hyperlocal-backend.js"></script>
+</body>
+
+</html>
